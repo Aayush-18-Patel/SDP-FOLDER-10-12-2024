@@ -1,0 +1,301 @@
+CREATE TABLE Admin (
+    adminId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    username VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE Company (
+    companyId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    companyName VARCHAR(100) NOT NULL,
+    industry VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE JobSeeker (
+    jobSeekerId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    resume TEXT,
+    jobPreferences TEXT,
+    username VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE
+);
+
+CREATE TABLE JobListing (
+    jobId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    jobDescription TEXT,
+    companyId INT NOT NULL,
+    jobTitle VARCHAR(100) NOT NULL,
+    status ENUM('OPEN', 'CLOSED') NOT NULL,
+    jobType VARCHAR(50),
+    FOREIGN KEY (companyId) REFERENCES Company(companyId)
+);
+
+CREATE TABLE JobSearching (
+    searchId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    jobSeekerId INT NOT NULL,
+    searchDate DATETIME NOT NULL,
+    searchQuery VARCHAR(255) NOT NULL,
+    FOREIGN KEY (jobSeekerId) REFERENCES JobSeeker(jobSeekerId)
+);
+
+CREATE TABLE Support (
+    supportId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    companyId INT,
+    jobSeekerId INT,
+    query TEXT NOT NULL,
+    status ENUM('OPEN', 'RESOLVED') NOT NULL,
+    FOREIGN KEY (companyId) REFERENCES Company(companyId),
+    FOREIGN KEY (jobSeekerId) REFERENCES JobSeeker(jobSeekerId),
+    CHECK (companyId IS NOT NULL OR jobSeekerId IS NOT NULL)
+);
+
+CREATE TABLE Feedback (
+    feedbackId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    companyId INT,
+    jobSeekerId INT,
+    feedbackText TEXT NOT NULL,
+    rating INT NOT NULL,
+    timestamp DATETIME NOT NULL,
+    feedbackType VARCHAR(50),
+    FOREIGN KEY (companyId) REFERENCES Company(companyId),
+    FOREIGN KEY (jobSeekerId) REFERENCES JobSeeker(jobSeekerId),
+    CHECK (companyId IS NOT NULL OR jobSeekerId IS NOT NULL)
+);
+
+CREATE TABLE Communication (
+    communicationId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    senderId INT NOT NULL,
+    senderType ENUM('COMPANY', 'JOBSEEKER') NOT NULL,
+    receiverId INT NOT NULL,
+    message TEXT NOT NULL,
+    timestamp DATETIME NOT NULL,
+    FOREIGN KEY (receiverId) REFERENCES Admin(adminId)
+    -- Handle sender validation in application logic
+);
+
+
+
+
+
+
+
+DESC Admin;
+DESC Company;
+DESC JobSeeker;
+DESC JobListing;
+DESC JobSearching;
+DESC Support;
+DESC Feedback;
+DESC Communication;
+
+
+
+
+
+
+DROP TABLE IF EXISTS Communication;
+DROP TABLE IF EXISTS Feedback;
+DROP TABLE IF EXISTS Support;
+DROP TABLE IF EXISTS JobSearching;
+DROP TABLE IF EXISTS JobListing;
+DROP TABLE IF EXISTS JobSeeker;
+DROP TABLE IF EXISTS Company;
+DROP TABLE IF EXISTS Admin;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CREATE TABLE Support 
+(
+    supportId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    companyId INT,
+    jobSeekerId INT,
+    query TEXT NOT NULL,
+    status ENUM('OPEN', 'RESOLVED') NOT NULL,
+    FOREIGN KEY (companyId) REFERENCES Company(companyId),
+    FOREIGN KEY (jobSeekerId) REFERENCES JobSeeker(jobSeekerId),
+    CHECK (companyId IS NOT NULL OR jobSeekerId IS NOT NULL)
+);
+
+
+
+When a Record is Valid:
+
+If companyId is set (not null), and jobSeekerId is null, the record is valid.
+If jobSeekerId is set (not null), and companyId is null, the record is valid.
+Both can be null, which would violate the constraint.
+When a Record is Invalid:
+
+If both companyId and jobSeekerId are null, the constraint prevents this record from being inserted or updated.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CREATE TABLE Admin (
+    adminId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    username VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE Company (
+    companyId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    companyName VARCHAR(100) NOT NULL,
+    industry VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE JobSeeker (
+    jobSeekerId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    resume TEXT,
+    jobPreferences TEXT,
+    username VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE
+);
+
+CREATE TABLE JobListing (
+    jobId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    jobDescription TEXT,
+    companyId INT NOT NULL,
+    jobTitle VARCHAR(100) NOT NULL,
+    status ENUM('OPEN', 'CLOSED') NOT NULL,
+    jobType VARCHAR(50),
+    FOREIGN KEY (companyId) REFERENCES Company(companyId)
+);
+
+CREATE TABLE JobSearching (
+    searchId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    jobSeekerId INT NOT NULL,
+    searchDate DATETIME NOT NULL,
+    searchQuery VARCHAR(255) NOT NULL,
+    FOREIGN KEY (jobSeekerId) REFERENCES JobSeeker(jobSeekerId)
+);
+
+CREATE TABLE Support (
+    supportId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    companyId INT,
+    jobSeekerId INT,
+    query TEXT NOT NULL,
+    status ENUM('OPEN', 'RESOLVED') NOT NULL,
+    FOREIGN KEY (companyId) REFERENCES Company(companyId),
+    FOREIGN KEY (jobSeekerId) REFERENCES JobSeeker(jobSeekerId)
+);
+
+CREATE TABLE Feedback (
+    feedbackId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    companyId INT,
+    jobSeekerId INT,
+    feedbackText TEXT NOT NULL,
+    rating INT NOT NULL,
+    timestamp DATETIME NOT NULL,
+    feedbackType VARCHAR(50),
+    FOREIGN KEY (companyId) REFERENCES Company(companyId),
+    FOREIGN KEY (jobSeekerId) REFERENCES JobSeeker(jobSeekerId)
+);
+
+CREATE TABLE Communication (
+    communicationId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    senderId INT NOT NULL,
+    senderType ENUM('COMPANY', 'JOBSEEKER') NOT NULL,
+    receiverId INT NOT NULL,
+    message TEXT NOT NULL,
+    timestamp DATETIME NOT NULL,
+    FOREIGN KEY (receiverId) REFERENCES Admin(adminId)
+);
+
+
+
+
+
+
+-- DESC statements for verification
+DESC Admin;
+DESC Company;
+DESC JobSeeker;
+DESC JobListing;
+DESC JobSearching;
+DESC Support;
+DESC Feedback;
+DESC Communication;
+
+
+
+
+
+
+
+Key Points:
+
+Removed CHECK Constraints: They have been removed due to MySQL’s limited support. Implement application-level validation if needed.
+
+Foreign Key Relationships: Ensure that the foreign key constraints are correctly set to maintain referential integrity.
+
+Logical Consistency: Ensure that your application logic checks the consistency of the Support and Feedback records to enforce that at least one identifier (companyId or jobSeekerId) is present.

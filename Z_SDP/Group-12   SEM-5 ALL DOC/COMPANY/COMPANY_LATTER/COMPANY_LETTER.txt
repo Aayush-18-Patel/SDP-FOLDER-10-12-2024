@@ -1,0 +1,49 @@
+Date: 22 August 2024
+
+To:
+Faculty of Computer Applications & Information Technology
+GLS University,
+Ahmedabad, Gujarat
+
+Subject: Approval of Project Titled "FLEXI-RECRUITS"
+
+Dear Sir/Madam,
+
+We are pleased to inform you that the project titled "FLEXI-RECRUITS" has been
+approved. The following students of GLS University have been selected to carry out
+this project:
+
+Student Details:
+
+- Name: Patel Kriti RashminBhai
+  Enrollment Number: 202200319010515
+  Division/Roll No.: BS-58
+
+- Name: Shaikh Ikra Varisahmed
+  Enrollment Number: 202200319010540
+  Division/Roll No.: BS-83
+
+- Name: Patel Aayush KirtiBhai
+  Enrollment Number: 202200319010510
+  Division/Roll No.: BS-53
+
+Project Overview:
+
+The project involves using a variety of technologies, including HTML, JavaScript,
+Node.js, Java, PHP, MySQL, and Python. This project is expected to meet the
+educational goals of GLS University and provide valuable experience to the
+students involved.
+
+Contact Information:
+
+Should you require any further details or have any questions, please do not
+hesitate to contact us at:
+
+- Phone: 9374655199
+- Email: shreejienterprise2011@gmail.com
+
+We sincerely appreciate your support and cooperation.
+
+Sincerely,
+Mr. Kirti Patel
+CEO, Shreeji Enterprise.
